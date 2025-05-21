@@ -18,4 +18,6 @@ const f4 = () => {
 }
 
 //module.exports = f3 
-module.exports = {f1, f2, f3, f4}
+//module.exports = {f1, f2, f3, f4}
+
+export {f1, f2, f3, f4}
