@@ -1,5 +1,8 @@
 const funcoes = require('./funcoes')
 
-//f1()
-//f2()
-funcoes.f4()
+const {f1, f2 ,f3, f4} = funcoes
+
+f1()
+f2()
+f3()
+f4()
