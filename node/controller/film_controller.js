@@ -14,4 +14,24 @@ async function listFilms(req, res) {
     res.json(list);
 }
 
-export { createFilm, listFilms };
+async function editFilm(req,res){
+    const filmEdit = await Film.findOne({where: {id:req.body.id}});
+    filmEdit.title = req.body.title;
+    filmEdit.description = req.body.description;
+    filmEdit.year = req.body.year;
+    if(await filmEdit.save()){
+        res.json({mensage: 'Registro Alterado'});
+    }else{
+        res.json({mensage: 'Erro ao alterar'});
+    }
+    
+}
+
+async function deleteFilm(req,res){
+    const removeFilm = await Film.findOne({where: {id:req.body.id}});
+    removeFilm.destroy();
+    res.json({mensage: 'Registro removido'})
+    
+}
+
+export { createFilm, listFilms , editFilm , deleteFilm };
