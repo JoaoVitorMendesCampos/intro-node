@@ -14,9 +14,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/', (req, res) => {
+/*app.use('/', (req, res) => {
     res.end("Rodando.");
-});
+});*/
 
 app.use('/musics', music_router);
 app.use('/singers', singer_router);

@@ -6,13 +6,13 @@ async function createMusic(req, res){
     const singers = [];
     for (let i = 0; i < req.body.singers.length; i++) {
         const singer = await Singer.findByPk(req.body.singers[i]);
-        actors.push(singer);
+        singers.push(singer);
     }
     const music = await Music.create({
         title: req.body.title,
         description: req.body.description,
         year: req.body.year,
-        SingerId: req.body.SingerId
+        AlbumId: req.body.AlbumId
     });
     await music.addSingers(singers);
     res.json(music);
