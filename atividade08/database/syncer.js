@@ -6,7 +6,7 @@ import sequelize from "./mysql.js";
 async function syncer() {
     try {
         await sequelize.authenticate();
-        //Music.sync();
+        //K Music.sync();
         Music.belongsTo(Album);
         Album.hasMany(Music);
         Music.belongsToMany(Singer, {through: 'Music_Singer'});
