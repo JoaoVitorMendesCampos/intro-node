@@ -3,7 +3,7 @@ import express from 'express';
 import { create } from 'express-handlebars';
 import music_web_router from './routers/web/music_routers.js';
 import singer_web_router from './routers/web/singer_routers.js';
-import album_router from './routers/api/album_routers.js';
+import album_web_router from './routers/web/album_routers.js';
 
 //sequelize.sync();
 
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 app.use('/musics', music_web_router);
 app.use('/singers', singer_web_router);
-app.use('/albums', album_router)
+app.use('/albums', album_web_router)
 
 app.listen(80, ()=>{
     console.log('Escutando...');

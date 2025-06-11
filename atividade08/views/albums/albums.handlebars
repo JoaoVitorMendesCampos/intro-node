@@ -1,0 +1,88 @@
+
+
+
+<h1>Albums</h1>
+
+<form action="/albums/{{#if action }}save{{else}}create{{/if}}" method="post">
+
+    <input type="hidden" name="id" value="{{album_editing.id}}">
+
+    <label for="title">Title</label><br>
+
+    <input type="text" id="title" name="title" value="{{album_editing.title}}" required><br><br>
+
+    <label for="description">Description</label><br>
+
+    <input type="text" id="description" name="description" value="{{album_editing.description}}" required><br><br>
+
+    <label for="year">Year</label><br>
+
+    <input type="number" id="year" name="year" value="{{album_editing.year}}" required><br><br>
+
+    <button>{{#if action }}Editar{{else}}Criar{{/if}}</button>
+
+</form>
+
+<hr>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Title</th>
+
+            <th>Description</th>
+
+            <th>Year</th>
+
+            <th>Musics</th>
+
+            <th>Ações</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {{#each albums}}
+
+        <tr>
+
+            <td>{{this.title}}</td>
+
+            <td>{{this.description}}</td>
+
+            <td>{{this.year}}</td>
+
+            <td>{{this.Music.title}}</td>
+
+            <td style="display: flex; justify-content: space-evenly;">
+
+                <form action="/albums/edit" method="post">
+
+                    <input type="hidden" name="id" value="{{this.id}}">
+
+                    <button>Edit</button>
+
+                </form>
+
+                <form action="/albums/delete" method="post">
+
+                    <input type="hidden" name="id" value="{{this.id}}">
+
+                    <button>Del</button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {{/each}}
+
+    </tbody>
+
+</table>
