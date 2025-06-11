@@ -1,8 +1,9 @@
 import syncer from './database/syncer.js';
 import express from 'express';
-import music_router from './routers/music_routers.js';
-import singer_router from './routers/singer_routers.js';
-import album_router from './routers/album_routers.js';
+import { create } from 'express-handlebars';
+import music_web_router from './routers/web/music_routers.js';
+import singer_web_router from './routers/web/singer_routers.js';
+import album_router from './routers/api/album_routers.js';
 
 //sequelize.sync();
 
@@ -12,14 +13,36 @@ if (!await syncer()) {
 
 const app = express();
 
+const hbs = create({
+
+    extname: '.handlebars',
+
+    defaultLayout: 'main',
+
+    layoutsDir: 'views/layouts/',
+
+    partialsDir: 'views/partials/'
+
+});
+
 app.use(express.json());
 
-/*app.use('/', (req, res) => {
-    res.end("Rodando.");
-});*/
+app.use(express.urlencoded());
 
-app.use('/musics', music_router);
-app.use('/singers', singer_router);
+app.engine('handlebars', hbs.engine);
+
+app.set('view engine', 'handlebars');
+
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+
+    res.render('home');
+
+});
+
+app.use('/musics', music_web_router);
+app.use('/singers', singer_web_router);
 app.use('/albums', album_router)
 
 app.listen(80, ()=>{

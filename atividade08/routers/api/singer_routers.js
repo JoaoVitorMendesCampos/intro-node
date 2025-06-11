@@ -1,4 +1,4 @@
-import { createSinger, deleteSinger, editSinger, listSinger } from "../controller/singer_controller.js";
+import { createSinger, deleteSinger, editSinger, listSinger } from "../../controller/api/singer_controller.js";
 
 import { Router } from "express";
 

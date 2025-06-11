@@ -1,4 +1,4 @@
-import { createAlbum, deleteAlbum, editAlbum, listAlbums } from "../controller/album_controller.js";
+import { createAlbum, deleteAlbum, editAlbum, listAlbums } from "../../controller/api/album_controller.js";
 
 import { Router } from "express";
 

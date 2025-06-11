@@ -1,5 +1,5 @@
-import Album from "../models/album.js";
-import Music from "../models/music.js";
+import Album from "../../models/album.js";
+import Music from "../../models/music.js";
 
 async function createAlbum(req, res){
     const album = await Album.create({

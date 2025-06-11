@@ -1,0 +1,99 @@
+
+
+
+<h1>Musics</h1>
+
+<form action="/musics/{{#if action }}save{{else}}create{{/if}}" method="post">
+
+    <input type="hidden" name="id" value="{{music_editing.id}}">
+
+    <label for="title">Title</label><br>
+
+    <input type="text" id="title" name="title" value="{{music_editing.title}}" required><br><br>
+
+    <label for="description">Description</label><br>
+
+    <input type="text" id="description" name="description" value="{{music_editing.description}}" required><br><br>
+
+    <label for="year">Year</label><br>
+
+    <input type="number" id="year" name="year" value="{{music_editing.year}}" required><br><br>
+
+    <label for="AlbumId">Album</label><br>
+
+    <input type="text" id="AlbumId" name="AlbumId" value="{{music_editing.AlbumId}}" required><br><br>
+
+    <label for="singers">Singers</label><br>
+
+    <input type="text" id="singers" name="singers" value="{{music_editing.singers}}"><br><br>
+
+    <button>{{#if action }}Editar{{else}}Criar{{/if}}</button>
+
+</form>
+
+<hr>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Title</th>
+
+            <th>Description</th>
+
+            <th>Year</th>
+
+            <th>Album</th>
+
+            <th>Ações</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {{#each musics}}
+
+        <tr>
+
+            <td>{{this.title}}</td>
+
+            <td>{{this.description}}</td>
+
+            <td>{{this.year}}</td>
+
+            <td>{{this.AlbumId}}</td>
+
+            <td style="display: flex; justify-content: space-evenly;">
+
+                <form action="/musics/edit" method="post">
+
+                    <input type="hidden" name="id" value="{{this.id}}">
+
+                    <button>Edit</button>
+
+                </form>
+
+                <form action="/musics/delete" method="post">
+
+                    <input type="hidden" name="id" value="{{this.id}}">
+
+                    <button>Del</button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {{/each}}
+
+    </tbody>
+
+</table>
+
+
+

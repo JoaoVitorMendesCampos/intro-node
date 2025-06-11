@@ -1,6 +1,6 @@
-import Music from "../models/music.js";
-import Singer from "../models/singer.js"
-import Album from "../models/album.js"
+import Music from "../../models/music.js";
+import Singer from "../../models/singer.js"
+import Album from "../../models/album.js"
 
 async function createMusic(req, res){
     const singers = [];

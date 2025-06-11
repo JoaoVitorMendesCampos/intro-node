@@ -1,5 +1,5 @@
-import Music from "../models/music.js";
-import Singer from "../models/singer.js";
+import Music from "../../models/music.js";
+import Singer from "../../models/singer.js";
 
 async function createSinger(req, res){
     const singer = await Singer.create({

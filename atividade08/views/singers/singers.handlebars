@@ -1,0 +1,91 @@
+<h1>Singers</h1>
+
+<form action="/singers/{{#if action }}save{{else}}create{{/if}}" method="post">
+
+    <input type="hidden" name="id" value="{{singer_editing.id}}">
+
+    <label for="name">Name</label><br>
+
+    <input type="text" id="name" name="name" value="{{singer_editing.name}}" required><br><br>
+
+    <label for="cpf">Cpf</label><br>
+
+    <input type="text" id="cpf" name="cpf" value="{{singer_editing.cpf}}" required><br><br>
+
+    <label for="date_of_birth">Date_of_birth</label><br>
+
+    <input type="date" id="date_of_birth" name="date_of_birth" value="{{singer_editing.date_of_birth}}" required><br><br>
+
+    <button>{{#if action }}Editar{{else}}Criar{{/if}}</button>
+
+</form>
+
+<hr>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>name</th>
+
+            <th>cpf</th>
+
+            <th>date_of_birth</th>
+
+            <th>Musics</th>
+
+            <th>Ações</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {{#each singers}}
+
+        <tr>
+
+            <td>{{this.name}}</td>
+
+            <td>{{this.cpf}}</td>
+
+            <td>{{this.date_of_birth}}</td>
+
+            <td>{{this.Music.title}}</td>
+
+            {{!-- <td>{{#each this.musics}}
+
+               {{this.title}}
+                
+                {{/each}}</td> --}}
+
+            <td style="display: flex; justify-content: space-evenly;">
+
+                <form action="/singers/edit" method="post">
+
+                    <input type="hidden" name="id" value="{{this.id}}">
+
+                    <button>Edit</button>
+
+                </form>
+
+                <form action="/singers/delete" method="post">
+
+                    <input type="hidden" name="id" value="{{this.id}}">
+
+                    <button>Del</button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {{/each}}
+
+    </tbody>
+
+</table>
