@@ -21,11 +21,23 @@
 
     <label for="AlbumId">Album</label><br>
 
-    <input type="text" id="AlbumId" name="AlbumId" value="{{music_editing.AlbumId}}" required><br><br>
+    <select name="AlbumId" id="ALbumId">
+        {{#each albums}}
+        <option value="{{this.id}}" {{#if (eq this.id ../music_editing.AlbumId)}}seleted{{/if}}
+        >{{this.title}}</option>
+        {{/each}}
+    </select><br><br>
+        
+    {{!--<input type="text" id="AlbumId" name="AlbumId" value="{{music_editing.AlbumId}}" required><br><br>--}}
 
     <label for="singers">Singers</label><br>
 
-    <input type="text" id="singers" name="singers" value="{{music_editing.singers}}"><br><br>
+     {{#each singers}}
+        <input type="checkbox" name="singers" id="singers{{this.id}}" value="{{this.id}}">
+        <label for="singers{{this.id}}">{{this.name}}</label>
+        {{/each}}
+    <br><br>
+    {{!--<input type="text" id="singers" name="singers" value="{{music_editing.singers}}"><br><br>--}}
 
     <button>{{#if action }}Editar{{else}}Criar{{/if}}</button>
 
@@ -47,6 +59,8 @@
 
             <th>Album</th>
 
+            <th>Singers</th>
+
             <th>Ações</th>
 
         </tr>
@@ -65,7 +79,9 @@
 
             <td>{{this.year}}</td>
 
-            <td>{{this.AlbumId}}</td>
+            <td>{{this.Album.title}}</td>
+
+            <td>{{#each this.Singers}} {{this.name}} {{#unless @last}} - {{/unless}} {{/each}}</td>
 
             <td style="display: flex; justify-content: space-evenly;">
 

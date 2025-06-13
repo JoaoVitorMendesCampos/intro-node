@@ -38,10 +38,12 @@ async function createMusic(req, res) {
 
 async function listMusics(req, res) {
 
-    const list = await Music.findAll({ include: [Singer, Album], raw: true });
-
-
-    res.render('musics/musics', { musics: list });
+    const list = await Music.findAll({ include: [Singer, Album] });
+    const list_processed = list.map((music)=>{return music.toJSON()});
+    const albums = await Album.findAll({raw: true});
+    const singers = await Singer.findAll({raw: true});
+    console.log(list_processed);
+    res.render('musics/musics', { musics: list_processed, albums: albums, singers: singers});
 
 
 
@@ -53,8 +55,13 @@ async function listMusics(req, res) {
 async function editMusic(req, res) {
 
     const music = await Music.findOne({ where: { id: req.body.id } });
-
-    res.render('musics/musics', { action: 'edit', music_editing: music.dataValues });
+    const albums = await Album.findAll({raw: true});
+    const singers = await Singer.findAll({raw: true});
+    res.render('musics/musics', { action: 'edit', 
+        music_editing: music.dataValues,
+        albums: albums,
+        singers: singers
+    });
 
 }
 
