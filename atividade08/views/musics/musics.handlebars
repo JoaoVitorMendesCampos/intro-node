@@ -33,7 +33,7 @@
     <label for="singers">Singers</label><br>
 
      {{#each singers}}
-        <input type="checkbox" name="singers" id="singers{{this.id}}" value="{{this.id}}">
+        <input type="checkbox" name="singers" id="singers{{this.id}}" value="{{this.id}}" {{#if (eq this.id ../music_editing.AlbumId)}}seleted{{/if}}>
         <label for="singers{{this.id}}">{{this.name}}</label>
         {{/each}}
     <br><br>

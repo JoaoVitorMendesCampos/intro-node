@@ -55,9 +55,13 @@ async function listMusics(req, res) {
 async function editMusic(req, res) {
 
     const music = await Music.findOne({ where: { id: req.body.id } });
+    const music_editing = music.toJSON();
+    console.log(music_editing);
     const albums = await Album.findAll({raw: true});
     const singers = await Singer.findAll({raw: true});
-    res.render('musics/musics', { action: 'edit', 
+    music.singers = music.Singers.map((sg) => {return sg.id})
+    res.render('musics/musics', { 
+        action: 'edit', 
         music_editing: music.dataValues,
         albums: albums,
         singers: singers
