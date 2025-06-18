@@ -49,6 +49,8 @@ app.use('/musics', music_web_router);
 app.use('/singers', singer_web_router);
 app.use('/albums', album_web_router)
 
+app.use(express.static('public'));
+
 app.listen(80, ()=>{
     console.log('Escutando...');
 });
