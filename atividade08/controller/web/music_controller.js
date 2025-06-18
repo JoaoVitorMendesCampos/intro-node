@@ -8,13 +8,16 @@ async function createMusic(req, res) {
 
     const singers = [];
 
-    for (let i = 0; i < req.body.singers.length; i++) {
+    if(req.body.singers){
+        for (let i = 0; i < req.body.singers.length; i++) {
 
-        const singer = await Singer.findByPk(req.body.singers[i]);
-
-        singers.push(singer);
-
+            const singer = await Singer.findByPk(req.body.singers[i]);
+    
+            singers.push(singer);
+    
+        }
     }
+    
 
     const music = await Music.create({
 
@@ -74,12 +77,14 @@ async function saveMusic(req, res) {
 
     const singers = [];
 
+    if(req.body.singers){
     for (let i = 0; i < req.body.singers.length; i++) {
 
         const singer = await Singer.findByPk(req.body.singers[i]);
 
         singers.push(singer);
 
+    }
     }
 
     const music = await Music.findOne({ where: { id: req.body.id } });
