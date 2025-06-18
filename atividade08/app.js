@@ -27,6 +27,8 @@ const hbs = create({
 
 hbs.handlebars.registerHelper('eq', (a,b) => {return a == b});
 
+hbs.handlebars.registerHelper('contains', (a,b) => {return typeof a != 'undefined' && a.indexOf(b) != -1});
+
 app.use(express.json());
 
 app.use(express.urlencoded());

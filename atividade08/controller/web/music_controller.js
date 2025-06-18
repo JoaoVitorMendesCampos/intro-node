@@ -53,16 +53,15 @@ async function listMusics(req, res) {
 
 
 async function editMusic(req, res) {
-
-    const music = await Music.findOne({ where: { id: req.body.id } });
+    const music = await Music.findOne({ where: { id: req.body.id }, include: Singer });
     const music_editing = music.toJSON();
-    console.log(music_editing);
     const albums = await Album.findAll({raw: true});
     const singers = await Singer.findAll({raw: true});
-    music.singers = music.Singers.map((sg) => {return sg.id})
+    music_editing.singers = music_editing.Singers.map((sg) => {return sg.id});
+    console.log(music_editing);
     res.render('musics/musics', { 
         action: 'edit', 
-        music_editing: music.dataValues,
+        music_editing: music_editing,
         albums: albums,
         singers: singers
     });
@@ -72,6 +71,16 @@ async function editMusic(req, res) {
 
 
 async function saveMusic(req, res) {
+
+    const singers = [];
+
+    for (let i = 0; i < req.body.singers.length; i++) {
+
+        const singer = await Singer.findByPk(req.body.singers[i]);
+
+        singers.push(singer);
+
+    }
 
     const music = await Music.findOne({ where: { id: req.body.id } });
 
@@ -84,6 +93,8 @@ async function saveMusic(req, res) {
     music.AlbumId = req.body.AlbumId;
 
     await music.save();
+
+    await music.setSingers(singers);
 
     res.render('alerts', { title: 'Musics', body: 'Music edited.' });
 
