@@ -1,0 +1,63 @@
+/* --- ESTILOS PARA O FORMULÁRIO DE LOGIN --- */
+
+/* Contêiner para centralizar o formulário na tela */
+.login-container {
+    max-width: 400px; /* Define uma largura máxima para o formulário */
+    margin: 4rem auto; /* Centraliza o formulário verticalmente (com margem no topo) e horizontalmente */
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* O seletor 'form' geral já deve funcionar, mas podemos ser mais específicos se necessário */
+.login-container form {
+    /* Reseta estilos do form geral se houver conflito */
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    background: none;
+}
+
+.login-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    font-size: 1rem;
+    margin-bottom: 1rem; /* Espaçamento entre os campos */
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #1e90ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+
+/* Oculta os <br> para um controle de espaçamento mais preciso */
+.login-container br {
+    display: none;
+}
+
+.login-container button[type="submit"] {
+    width: 100%; /* Faz o botão ocupar a largura total do contêiner */
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    margin-top: 1rem; /* Espaço acima do botão */
+}
