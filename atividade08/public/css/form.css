@@ -1,0 +1,185 @@
+/* --- ESTILOS PARA FORMULÁRIO E TABELA --- */
+
+/* Título da Página Principal */
+main h1 {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilos do Formulário de Criação/Edição */
+form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding não afete a largura total */
+    font-size: 1rem;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus {
+    border-color: #1e90ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+
+form br {
+    display: none; /* Esconde quebras de linha <br> desnecessárias */
+}
+
+/* Estilo para todos os botões */
+button {
+    background-color: #1e90ff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Adiciona espaço acima do botão principal do formulário */
+}
+
+button:hover {
+    background-color: #0073e6;
+}
+
+/* Linha horizontal */
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 2rem 0;
+}
+
+/* Estilos da Tabela de Listagem */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Garante que os cantos arredondados sejam aplicados ao conteúdo */
+}
+
+table thead {
+    background-color: #333;
+    color: white;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Linhas alternadas */
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1; /* Efeito ao passar o mouse */
+}
+
+/* Estilos para a coluna de ações e seus formulários/botões internos */
+table td form {
+    background: none;
+    padding: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+table td button {
+    padding: 5px 10px; /* Botões menores na tabela */
+    font-size: 0.9rem;
+    margin: 0 5px; /* Espaçamento entre os botões de ação */
+}
+
+/* Botão de Excluir com cor de destaque vermelha */
+table td form[action="/albums/delete"] button {
+    background-color: #e74c3c;
+}
+
+table td form[action="/albums/delete"] button:hover {
+    background-color: #c0392b;
+}
+
+
+/* Design Responsivo para a Tabela em Telas Pequenas */
+@media (max-width: 768px) {
+    /* Transforma a tabela em layout de "cartões" */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Esconde o cabeçalho original */
+    table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    table tr {
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+    }
+
+    table td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    /* Cria os "labels" para cada célula de dados */
+    table td:before {
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        content: attr(data-label); /* Idealmente, o 'data-label' seria adicionado no HTML */
+    }
+    
+    /* Simulação dos data-labels via CSS */
+    table td:nth-of-type(1):before { content: "Title"; }
+    table td:nth-of-type(2):before { content: "Description"; }
+    table td:nth-of-type(3):before { content: "Year"; }
+    table td:nth-of-type(4):before { content: "Musics"; }
+    table td:nth-of-type(5):before { content: "Ações"; }
+
+    table td[style*="display: flex"] {
+        display: block;
+        text-align: right; /* Alinha os botões à direita no modo responsivo */
+    }
+
+    table td form {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+}
