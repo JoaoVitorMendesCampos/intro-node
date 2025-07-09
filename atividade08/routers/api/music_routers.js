@@ -1,4 +1,4 @@
-import { createMusic, deleteMusic, editMusic, listMusics } from "../controller/music_controller.js";
+import { createMusic, deleteMusic, editMusic, listMusics } from "../../controller/api/music_controller.js";
 
 import { Router } from "express";
 

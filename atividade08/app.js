@@ -3,6 +3,8 @@ import { create } from 'express-handlebars';
 import session from 'express-session';
 import css from 'connect-session-sequelize';
 
+import cors from 'cors';
+
 import syncer from './database/syncer.js';
 import music_web_router from './routers/web/music_routers.js';
 import singer_web_router from './routers/web/singer_routers.js';
@@ -11,6 +13,10 @@ import user_web_router from './routers/web/user_router.js';
 import sequelize from './database/mysql.js';
 import { checkLogged } from './controller/web/user_controller.js';
 
+import music_router from './routers/api/music_routers.js';
+import singer_router from './routers/api/singer_routers.js';
+import album_router from './routers/api/album_routers.js';
+
 //sequelize.sync();
 
 if (!await syncer()) {
@@ -18,6 +24,14 @@ if (!await syncer()) {
 }
 
 const app = express();
+
+app.use(cors({
+
+    allowOrigin: '*',
+
+    methods: 'GET,PUT,POST,DELETE',
+
+}));
 
 const hbs = create({
 
@@ -96,8 +110,11 @@ app.use('/singers',checkLogged, singer_web_router);
 app.use('/albums',checkLogged, album_web_router);
 app.use('/users', user_web_router); // ainda com as rotas de api
 
+app.use('/api/musics', music_router);
+app.use('/api/singers', singer_router);
+app.use('/api/albums', album_router);
+app.use('/api/users', user_web_router);
 app.use(express.static('public'));
-
 app.listen(80, ()=>{
     console.log('Escutando...');
 });
