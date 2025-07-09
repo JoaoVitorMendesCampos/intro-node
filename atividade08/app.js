@@ -114,6 +114,7 @@ app.use('/api/musics', music_router);
 app.use('/api/singers', singer_router);
 app.use('/api/albums', album_router);
 app.use('/api/users', user_web_router);
+
 app.use(express.static('public'));
 app.listen(80, ()=>{
     console.log('Escutando...');
