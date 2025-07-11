@@ -24,10 +24,23 @@ async function listMusics(req, res) {
 }
 
 async function editMusic(req,res){
+    const singers = [];
+
+    if(req.body.singers){
+    for (let i = 0; i < req.body.singers.length; i++) {
+
+        const singer = await Singer.findByPk(req.body.singers[i]);
+
+        singers.push(singer);
+
+    }
+    }
     const musicEdit = await Music.findOne({where: {id:req.body.id}});
     musicEdit.title = req.body.title;
     musicEdit.description = req.body.description;
     musicEdit.year = req.body.year;
+    musicEdit.AlbumId = req.body.AlbumId;
+    await musicEdit.setSingers(singers);
     if(await musicEdit.save()){
         res.json({mensage: 'Registro Alterado'});
     }else{
